@@ -166,13 +166,13 @@ PRODUCT_COPY_FILES += \
 
 # Keyhandler
 PRODUCT_PACKAGES += \
-    ConfigPanel \
-    com.cyanogenmod.keyhandler
+    ConfigPanelVanir \
+    com.vanir.keyhandler
 
-PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
+PRODUCT_SYSTEM_SERVER_JARS += com.vanir.keyhandler
 
 # never dexopt the keyhandler
-$(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
+$(call add-product-dex-preopt-module-config,com.vanir.keyhandler,disable)
 
 # Keymaster
 PRODUCT_PACKAGES += \
