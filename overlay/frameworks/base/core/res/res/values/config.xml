@@ -164,9 +164,6 @@
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
 
-    <!-- Boolean indicating associated scan are allowed -->
-    <bool translatable="false" name="config_wifi_framework_enable_associated_autojoin_scan">false</bool>
-
     <!-- Wifi driver supports batched scan -->
     <bool translatable="false" name="config_wifi_batched_scan_supported">true</bool>
 
