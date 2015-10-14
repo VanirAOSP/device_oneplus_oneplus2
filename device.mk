@@ -125,6 +125,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     bdAddrLoader
 
+# BoringSSL compatability wrapper
+PRODUCT_PACKAGES += \
+    libboringssl-compat
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
