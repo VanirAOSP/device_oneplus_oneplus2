@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2014-2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,16 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),oneplus2)
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(call all-java-files-under, src)
-LOCAL_CERTIFICATE := platform
-LOCAL_PACKAGE_NAME := ConfigPanelVanir
+LOCAL_SRC_FILES := wcnss_oneplus_client.c
 
-include $(BUILD_PACKAGE)
-endif
+LOCAL_C_INCLUDES += hardware/qcom/wlan/wcnss_service
+LOCAL_CFLAGS += -Wall
+
+LOCAL_SHARED_LIBRARIES := libc libcutils libutils liblog
+
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE := libwcnss_qmi
+
+include $(BUILD_SHARED_LIBRARY)

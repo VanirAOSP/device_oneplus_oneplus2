@@ -40,6 +40,7 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PACKAGES += \
     fstab.qcom \
     init.class_main.sh \
+    init.qcom.early_boot.sh \
     init.qcom.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
@@ -67,6 +68,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml \
+    frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
@@ -83,6 +85,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+
+# Adreno driver dependencies
+PRODUCT_PACKAGES += \
+    libboringssl-compat \
+    libstlport
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -148,8 +155,11 @@ PRODUCT_PACKAGES += \
     flp.conf \
     gps.conf \
     izat.conf \
+    lowi.conf \
+    msap.conf \
     quipc.conf \
-    sap.conf
+    sap.conf \
+    xtwifi.conf
 
 # IRQ
 PRODUCT_COPY_FILES += \
@@ -184,25 +194,33 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Media
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
-    libdivxdrmdecrypt \
     libdashplayer \
+    libdivxdrmdecrypt \
+    libextmedia_jni \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
+    libOmxSwVencMpeg4 \
+    libOmxSwVencHevc \
     libOmxVdec \
     libOmxVdecHevc \
     libOmxVenc \
+    libOmxVidcCommon \
+    libqcmediaplayer \
     libstagefrighthw \
+    libstagefright_soft_flacdec \
     qcmediaplayer
 
-PRODUCT_BOOT_JARS += qcmediaplayer
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
 
 # Power
 PRODUCT_PACKAGES += \
@@ -216,12 +234,7 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
-    $(LOCAL_PATH)/configs/fpc1021.conf:system/etc/fpc1021.conf
-
-# System Properties
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    $(LOCAL_PATH)/configs/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
 
 # Thermal config
 PRODUCT_COPY_FILES += \
@@ -235,15 +248,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_wlan_nv.bin \
-    $(LOCAL_PATH)/wifi/lowi.conf:system/etc/lowi.conf \
-    $(LOCAL_PATH)/wifi/msap.conf:system/etc/msap.conf \
-    $(LOCAL_PATH)/wifi/xtwifi.conf:system/etc/xtwifi.conf
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/qca_cld/WCNSS_qcom_wlan_nv.bin
 
 PRODUCT_PACKAGES += \
-    dhcpcd.conf \
+    libqsap_sdk \
+    libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
+    dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf \
     wpa_supplicant_overlay.conf \
@@ -253,7 +265,8 @@ PRODUCT_PACKAGES += \
     hostapd.deny
 
 PRODUCT_PACKAGES += \
-    wcnss_service
+    wcnss_service \
+    libwcnss_qmi
 
 # Misc dependency packages
 PRODUCT_PACKAGES += \
