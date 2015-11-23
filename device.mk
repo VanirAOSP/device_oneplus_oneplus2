@@ -219,8 +219,7 @@ PRODUCT_PACKAGES += \
     libstagefright_soft_flacdec \
     qcmediaplayer
 
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
+PRODUCT_BOOT_JARS += qcmediaplayer
 
 # Power
 PRODUCT_PACKAGES += \
