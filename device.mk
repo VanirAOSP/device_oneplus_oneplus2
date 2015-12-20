@@ -54,6 +54,10 @@ PRODUCT_PACKAGES += \
     init.qcom.ril.sh \
     init.qcom.uicc.sh
 
+# RIL
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig
+
 # Permissions
 PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml \
@@ -64,9 +68,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:system/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
@@ -144,8 +150,9 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # Fingerprint sensor
-#PRODUCT_PACKAGES += \
-#    fingerprint.msm8994
+PRODUCT_PACKAGES += \
+    fingerprint.msm8994 \
+    fingerprintd
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -216,6 +223,10 @@ PRODUCT_PACKAGES += \
     qcmediaplayer
 
 PRODUCT_BOOT_JARS += qcmediaplayer
+
+# Camera
+PRODUCT_PACKAGES += \
+    libcamera_shim
 
 # Power
 PRODUCT_PACKAGES += \

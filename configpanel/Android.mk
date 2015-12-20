@@ -26,5 +26,8 @@ LOCAL_PACKAGE_NAME := ConfigPanelVanir
 LOCAL_STATIC_JAVA_LIBRARIES := \
     org.cyanogenmod.platform.internal
 
+LOCAL_STATIC_JAVA_LIBRARIES := \
+    org.cyanogenmod.platform.internal
+
 include $(BUILD_PACKAGE)
 endif

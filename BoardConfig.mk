@@ -107,7 +107,7 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
-TARGET_GPS_HAL_PATH := device/oneplus/oneplus2/gps
+USE_DEVICE_SPECIFIC_GPS := true
 TARGET_NO_RPC := true
 
 # Graphics
@@ -123,6 +123,9 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 
+# Include path
+TARGET_SPECIFIC_HEADER_PATH := device/oneplus/oneplus2/include
+
 # Init
 TARGET_UNIFIED_DEVICE := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
@@ -137,6 +140,9 @@ MALLOC_IMPL := dlmalloc
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
+
+# RIL
+TARGET_RIL_VARIANT := caf
 
 # RPC
 TARGET_NO_RPC := true
@@ -165,6 +171,9 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 59047394304
 BOARD_FLASH_BLOCK_SIZE := 262144
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+
+# Malloc
+MALLOC_IMPL := dlmalloc
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oneplus/oneplus2/rootdir/etc/fstab.qcom
